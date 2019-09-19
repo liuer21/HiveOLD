@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="#BE3F51B5"
+            android:background="#898D9C"
             android:text="Undo" />
 
         <Button
@@ -42,7 +42,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="#BE3F51B5"
+            android:background="#818491"
             android:text="Quit" />
     </LinearLayout>
 

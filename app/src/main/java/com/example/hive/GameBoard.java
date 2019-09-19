@@ -9,8 +9,14 @@ import android.view.SurfaceView;
 
 public class GameBoard extends SurfaceView {
 
+    //paint class
+    Paint currentMove = new Paint();
+    Paint paint = new Paint();
+
     public GameBoard(Context context, AttributeSet attrs) {
         super(context, attrs);
+
+
 
         //This is essential or your onDraw method won't get called
         setWillNotDraw(false);
@@ -18,7 +24,6 @@ public class GameBoard extends SurfaceView {
 
     public void drawHexagon(Canvas canvas, int startX, int startY, int size)
     {
-        Paint paint = new Paint();
         paint.setColor(Color.WHITE);
         canvas.drawLine(startX, startY, startX + size, startY, paint);
         canvas.drawLine(startX + size, startY, startX + (size/2) * 3^(1/2), startY + size/2, paint);
@@ -30,14 +35,20 @@ public class GameBoard extends SurfaceView {
 
     public void onDraw(Canvas canvas)
     {
-        Paint paint = new Paint();
+        //Colors and Size for Pieces
+        currentMove.setColor(Color.RED);
+        currentMove.setTextSize(25);
+
+
         paint.setColor(Color.WHITE);
         paint.setStrokeWidth(5.0f);
 
         //Hexagons are drawn in mid game
         drawHexagon(canvas, 400, 400, 150);
         drawHexagon(canvas, 400 + 75 * 3^(1/2), 475, 150);
+
         drawHexagon(canvas, 400 + 75 * 3^(1/2), 625, 150);
+
         drawHexagon(canvas, 400 + 75 * 3^(1/2), 775, 150);
         drawHexagon(canvas, 400 + 75 * 3^(1/2), 925, 150);
         drawHexagon(canvas, 400, 850, 150);
@@ -59,14 +70,19 @@ public class GameBoard extends SurfaceView {
         canvas.drawText("Black Beetle", 850, 1075, paint);
 
 
+
         //Bottom selection board
+
         drawHexagon(canvas, 75, 1450, 150);
         canvas.drawText("Queen Bee", 90, 1530, paint);
         drawHexagon(canvas, 375, 1450, 150);
-        canvas.drawText("Ant", 420, 1530, paint);
+        canvas.drawText("Ant", 420, 1530, currentMove);
         drawHexagon(canvas, 675, 1450, 150);
         canvas.drawText("Spider", 705, 1530, paint);
         drawHexagon(canvas, 975, 1450, 150);
         canvas.drawText("Beetle", 1005, 1530, paint);
+
+        //Who's turn it is
+        canvas.drawText("WHITE'S TURN", 50, 50, paint);
     }
 }
