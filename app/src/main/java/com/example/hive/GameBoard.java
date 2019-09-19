@@ -53,6 +53,6 @@ public class GameBoard extends SurfaceView {
         canvas.drawText("Black Queen Bee", 600,1000, paint);
         canvas.drawText("Black Ant",425, 925, paint);
         canvas.drawText("Black Spider", 850, 925, paint);
-        canvas.drawText("Black Beetle", 850, 1075,paint);
+        canvas.drawText("Black Beetle", 850, 1075, paint);
     }
 }
