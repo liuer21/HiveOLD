@@ -16,8 +16,6 @@ public class GameBoard extends SurfaceView {
     public GameBoard(Context context, AttributeSet attrs) {
         super(context, attrs);
 
-
-
         //This is essential or your onDraw method won't get called
         setWillNotDraw(false);
     }
@@ -33,6 +31,15 @@ public class GameBoard extends SurfaceView {
         canvas.drawLine(startX - ((size/2) * 3^(1/2)) + size, startY + size/2, startX, startY, paint);
     }
 
+    public void drawHexagon(Canvas canvas, int startX, int startY) {
+        canvas.drawLine(startX, startY+33, startX+50, startY, paint);
+        canvas.drawLine(startX+50, startY, startX+100, startY+33, paint);
+        canvas.drawLine(startX+100, startY+33, startX+100, startY+66, paint);
+        canvas.drawLine(startX+100, startY+66, startX+50, startY+100, paint);
+        canvas.drawLine(startX+50, startY+100, startX, startY+66, paint);
+        canvas.drawLine(startX, startY+66, startX, startY+33, paint);
+    }
+
     public void onDraw(Canvas canvas)
     {
         //Colors and Size for Pieces
@@ -43,6 +50,19 @@ public class GameBoard extends SurfaceView {
         paint.setColor(Color.WHITE);
         paint.setStrokeWidth(5.0f);
 
+
+        for(int i = 0; i < 12; i++) {
+            for (int x = 0; x < 12; x++) {
+                if (i%2 == 0) {
+                    drawHexagon(canvas, x * 100, i * 66);
+                } else {
+                    drawHexagon(canvas, x * 100 + 50, i * 66);
+                }
+            }
+        }
+
+
+        /*
         //Hexagons are drawn in mid game
         drawHexagon(canvas, 400, 400, 150);
         drawHexagon(canvas, 400 + 75 * 3^(1/2), 475, 150);
@@ -56,7 +76,7 @@ public class GameBoard extends SurfaceView {
         drawHexagon(canvas, 700 + 50 * 3^(1/2), 1000, 150);
 
         paint.setTextSize(25);
-
+        */
 
         //text written for pieces already on board
         canvas.drawText("White Queen Bee", 400, 475, paint);
